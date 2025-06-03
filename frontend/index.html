@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Furniture</title>
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Furniture</title>
+        <link rel="stylesheet" href="./css/main.css" />
+      </head>
+      <body>
+        <div class="mask"></div>
+        <header class="header">
+          <div class="container">
+            <div class="header__inner">
+              <nav class="header__nav">
+                <ul class="header__nav-list">
+                  <li class="header__nav-link">
+                    <a href="form.html">Форма</a>
+                  </li>
+                  <li class="header__nav-link">
+                    <a href="contacts.html">Контакти</a>
+                  </li>
+                </ul>
+                <a href="index.html" class="header__logo">
+                  <picture>
+                    <source srcset="./img/icons/logos/logo.webp" type="image/webp">
+                    <img class="header__logo-img logo" src="./img/icons/logos/logo.jpg" alt="Logo" />
+                  </picture>
+                </a>
+                <ul class="header__btns">
+                  <button class="btn-login">Увійти</button>
+                  <button class="btn-signup">Зареєструватись</button>
+                </ul>
+              </nav>
+              <button class="header__btn">
+                <picture>
+                  <source srcset="./img/rightside/rightside-icon.svg" type="image/webp">
+                  <img src="./img/rightside/rightside-icon.svg" alt="" />
+                </picture>
+              </button>
+            </div>
+          </div>
+        </header>
+        <div class="mask"></div>
+        <div class="modal-overlay modal-login">
+          <div class="modal">
+            <button class="modal-close modal-close--login">X</button>
+            <h2>Увійти</h2>
+            <form>
+              <div class="form-group">
+                <label for="email">Електронна пошта</label>
+                <input type="email" id="email" placeholder="Введіть email" required />
+              </div>
+              <div class="form-group">
+                <label for="password">Пароль</label>
+                <input type="password" id="password" placeholder="Введіть пароль" required />
+              </div>
+              <button type="submit" class="btn-submit">Увійти</button>
+            </form>
+            <button class="btn-forgot-password" style="margin-top: 10px; background: none; border: none; color: #007BFF; cursor: pointer;"> Забули пароль?</button>
+            <button class="btn-google__wrapper">
+              <div class="btn-google">Увійти через Google</div>
+              <picture>
+                <source srcset="./img/icons/google.webp" type="image/webp">
+                <img src="./img/icons/google.png" alt="" />
+              </picture>
+            </button>
+          </div>
+        </div>
+        <div class="modal-overlay modal-signup">
+          <div class="modal">
+            <button class="modal-close modal-close--signup">X</button>
+            <h2>Реєстрація</h2>
+            <form>
+              <div class="form-group">
+                <label for="register-email">Електронна пошта</label>
+                <input type="email" id="register-email" placeholder="Введіть email" required />
+              </div>
+              <div class="form-group">
+                <label for="register-password">Пароль</label>
+                <input type="password" id="register-password" placeholder="Введіть пароль" required />
+              </div>
+              <button type="submit" class="btn-submit">Зареєструватися</button>
+            </form>
+            <button class="btn-google__wrapper">
+              <div class="btn-google">Увійти через Google</div>
+              <picture>
+                <source srcset="./img/icons/google.webp" type="image/webp">
+                <img src="./img/icons/google.png" alt="" />
+              </picture>
+            </button>
+          </div>
+        </div>
+        <div class="header-rightside">
+          <div class="rightside__inner">
+            <div class="rightside__logo">
+              <picture>
+                <source srcset="./img/icons/logos/logo.webp" type="image/webp">
+                <img class="logo" src="./img/icons/logos/logo.jpg" alt="Logo" />
+              </picture>
+            </div>
+            <h1 class="rightside__title title"> Як працює система?</h1>
+            <p class="rightside__text"> Студент заповнює коротку форму з даними про себе та пару. Після відправки інформація потрапляє до журналу викладача.</p>
+            <picture>
+              <source srcset="./img/rightside/rightside-main-img.svg" type="image/webp">
+              <img class="rightside__img" src="./img/rightside/rightside-main-img.svg" alt="" />
+            </picture>
+          </div>
+          <button class="rightside-close">
+            <picture>
+              <source srcset="./img/icons/close.svg" type="image/webp">
+              <img src="./img/icons/close.svg" alt="" />
+            </picture>
+          </button>
+        </div>
+        <button class="mobile-nav-btn">
+          <div class="nav-icon"></div>
+        </button>
+        <div class="mobile-nav">
+          <ul class="mobile-nav__list">
+            <li>
+              <a href="./form.html">Форма</a>
+            </li>
+            <li>
+              <a href="./contacts.html">Контакти</a>
+            </li>
+          </ul>
+        </div>
+        <div class="header-rightside">
+          <div class="rightside__inner">
+            <div class="rightside__logo">
+              <picture>
+                <source srcset="./img/icons/logos/logo.webp" type="image/webp">
+                <img class="logo" src="./img/icons/logos/logo.jpg" alt="Logo" />
+              </picture>
+            </div>
+            <h1 class="rightside__title title"> Як працює система?</h1>
+            <p class="rightside__text"> Студент заповнює коротку форму з даними про себе та пару. Після відправки інформація потрапляє до журналу викладача.</p>
+            <picture>
+              <source srcset="./img/rightside/rightside-main-img.svg" type="image/webp">
+              <img class="rightside__img" src="./img/rightside/rightside-main-img.svg" alt="" />
+            </picture>
+          </div>
+          <button class="rightside-close">
+            <picture>
+              <source srcset="./img/icons/close.svg" type="image/webp">
+              <img src="./img/icons/close.svg" alt="" />
+            </picture>
+          </button>
+        </div>
+        <section class="collection">
+          <div class="collection__slider swiper">
+            <div class="swiper-wrapper">
+              <div class="collection__item swiper-slide" style="background-image: url(./img/main-page/collection/main-collection-img-1.jpg);">
+                <div class="collection__item-box">
+                  <div class="collection__titlebox">
+                    <h2 class="collection__item-title title"> Бронюй аудиторії в <br> НУЛП онлайн — швидко <br> та зручно </h2>
+                    <p class="collection__item-text"> Єдиний сервіс для викладачів, що дозволяє бронювати кабінети на пари, консультації чи зустрічі без паперової тяганини.</p>
+                    <a href="form.html" class="confirm-btn">Перейти до бронювання</a>
+                  </div>
+                </div>
+              </div>
+              <div class="collection__item swiper-slide" style="background-image: url(./img/main-page/collection/main-collection-img-2.jpg);">
+                <div class="collection__item-box">
+                  <div class="collection__titlebox">
+                    <h2 class="collection__item-title title"> Бронюй аудиторії в <br> НУЛП онлайн — швидко <br> та зручно </h2>
+                    <p class="collection__item-text"> Єдиний сервіс для викладачів, що дозволяє бронювати кабінети на пари, консультації чи зустрічі без паперової тяганини.</p>
+                    <a href="form.html" class="confirm-btn">Перейти до бронювання</a>
+                  </div>
+                </div>
+              </div>
+              <div class="collection__item swiper-slide" style="background-image: url(./img/main-page/collection/main-collection-img-3.jpg);">
+                <div class="collection__item-box">
+                  <div class="collection__titlebox">
+                    <h2 class="collection__item-title title"> Бронюй аудиторії в <br> НУЛП онлайн — швидко <br> та зручно </h2>
+                    <p class="collection__item-text"> Єдиний сервіс для викладачів, що дозволяє бронювати кабінети на пари, консультації чи зустрічі без паперової тяганини.</p>
+                    <a href="form.html" class="confirm-btn">Перейти до бронювання</a>
+                  </div>
+                </div>
+              </div>
+              <div class="swiper-pagination"></div>
+            </div>
+        </section>
+        <div class="new__collection-main">
+          <div class="new-colection">
+            <div class="container-fluid">
+              <h1 class="new-colection__title title">Чому варто скористатись системою</h1>
+              <p class="new-colection__text"> Сервіс створено для спрощення процесу організації занять та подій. Все в одному місці, без зайвих листів і погоджень.</p>
+              <div class="new-colection__items">
+                <div class="new-colection__item">
+                  <picture>
+                    <source srcset="./img/main-page/new-collection/new-colection-1.svg" type="image/webp">
+                    <img src="./img/main-page/new-collection/new-colection-1.svg" alt="" />
+                  </picture>
+                  <div class="new-colection__item-wrapper">
+                    <div class="new-colection__item-inner">
+                      <h4 class="new-colection__item-title title"> Доступ 24/7</h4>
+                      <p class="new-colection__item-text"> Бронювання доступне в будь-який час доби.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="new-colection__item">
+                  <picture>
+                    <source srcset="./img/main-page/new-collection/new-colection-2.svg" type="image/webp">
+                    <img src="./img/main-page/new-collection/new-colection-2.svg" alt="" />
+                  </picture>
+                  <div class="new-colection__item-wrapper">
+                    <div class="new-colection__item-inner">
+                      <h4 class="new-colection__item-title title"> Автоматичне оновлення графіка</h4>
+                      <p class="new-colection__item-text"> Інформація про зайнятість оновлюється миттєво.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="new-colection__item">
+                  <picture>
+                    <source srcset="./img/main-page/new-collection/new-colection-3.svg" type="image/webp">
+                    <img src="./img/main-page/new-collection/new-colection-3.svg" alt="" />
+                  </picture>
+                  <div class="new-colection__item-wrapper">
+                    <div class="new-colection__item-inner">
+                      <h4 class="new-colection__item-title title"> Жодних дублювань</h4>
+                      <p class="new-colection__item-text"> Неможливо забронювати кабінет, який уже зайнятий.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="new-colection__item">
+                  <picture>
+                    <source srcset="./img/main-page/new-collection/new-colection-4.svg" type="image/webp">
+                    <img src="./img/main-page/new-collection/new-colection-4.svg" alt="" />
+                  </picture>
+                  <div class="new-colection__item-wrapper">
+                    <div class="new-colection__item-inner">
+                      <h4 class="new-colection__item-title title"> Неможливо забронювати кабінет, який уже зайнятий.</h4>
+                      <p class="new-colection__item-text"> Ви завжди матимете підтвердження свого бронювання.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="aesthetic">
+          <div class="aesthetic__mask">
+            <picture>
+              <source srcset="./img/main-page/aesthetic/aesthetic-mask.webp" type="image/webp">
+              <img src="./img/main-page/aesthetic/aesthetic-mask.png" alt="" />
+            </picture>
+          </div>
+          <div class="container">
+            <div class="aesthetic__textbox">
+              <h2 class="aesthetic__title title"> Прозоре <br> бронювання аудиторій </h2>
+              <p class="aesthetic__text"> Система фіксує всі запити на бронювання — жодних непорозумінь чи дублювань. Університет контролює розклад, а викладачі мають чіткий доступ до вільних кабінетів.</p>
+            </div>
+          </div>
+        </div>
+        <div class="how-work">
+          <div class="container">
+            <div class="how-work__title title">Як це працює</div>
+            <div class="how-work__wrapper">
+              <div class="how-work__items-top">
+                <div class="how-work__item">
+                  <div class="how-work__item-box">
+                    <h5 class="how-work__item-title">Вхід до системи та вибір параметрів</h5>
+                  </div>
+                  <p class="how-work__item-text"> Викладач входить до системи за допомогою корпоративної пошти НУЛП. Після авторизації відкривається зручна панель керування, де можна обрати дату, бажаний час заняття, корпус та інші параметри. Інтерфейс адаптований під потреби викладачів — бронювання займає менше хвилини.</p>
+                </div>
+                <div class="how-work__item">
+                  <div class="how-work__item-box">
+                    <h5 class="how-work__item-title">Вибір доступної аудиторії</h5>
+                  </div>
+                  <p class="how-work__item-text"> Система автоматично показує лише ті аудиторії, які доступні в обраний день і час. Викладач обирає з вільних кабінетів той, який найбільше підходить — наприклад, за розміром, наявністю мультимедійного обладнання або локацією в корпусі.</p>
+                </div>
+              </div>
+              <div class="how-work__item how-work__item-bottom">
+                <div class="how-work__item-box">
+                  <h5 class="how-work__item-title">Підтвердження та оновлення статусу</h5>
+                </div>
+                <p class="how-work__item-text"> Після завершення бронювання система надсилає підтвердження на електронну пошту користувача. Обрана аудиторія відразу позначається як "зайнята", тож інші викладачі не зможуть її забронювати на той самий час. Увесь процес є автоматизованим і не потребує жодних додаткових дій.</p>
+              </div>
+            </div>
+            <a href="./form.html" class="confirm-btn">Перейти до бронювання</a>
+          </div>
+        </div>
+        <section class="blog">
+          <div class="container">
+            <h2 class="blog__title title">Останні новини</h2>
+            <div class="blog__items">
+              <a href="#" class="blog__item">
+                <picture>
+                  <source srcset="./img/main-page/blog/blog-1.webp" type="image/webp">
+                  <img src="./img/main-page/blog/blog-1.jpg" class="blog__item-img" alt="" />
+                </picture>
+                <p class="blog__item-subtitle"> Травень 20, 2025 | <span></span> Редакція сайту </p>
+                <h3 class="blog__item-title"> Львівська Політехніка впровадила нову систему бронювання: швидко, зручно, без черг</h3>
+              </a>
+              <a href="#" class="blog__item">
+                <img src="./img/main-page/blog/blog-2.webp" class="blog__item-img" alt="" />
+                <p class="blog__item-subtitle"> Травень 25,2024 | <span></span> Редакція сайту </p>
+                <h3 class="blog__item-title"> Як цифрове бронювання аудиторій спрощує навчальний процес у НУЛП</h3>
+              </a>
+            </div>
+          </div>
+        </section>
+        <footer class="footer">
+          <div class="container">
+            <div class="footer__inner">
+              <div class="footer__textbox">
+                <h4 class="footer__title">Система підтвердження присутності студентів</h4>
+                <p class="footer__text"> Виникли питання? Напиши нам на пошту, і ми радо відповімо!</p>
+                <div class="footer__mail">
+                  <a href="mailto:ouremailaddress@email.com">ouremailaddress@email.com</a>
+                </div>
+                <form class="footer__form">
+                  <div class="footer__input">
+                    <input placeholder="Введіть свій email..." />
+                  </div>
+                  <button class="footer__btn">Надіслати</button>
+                </form>
+              </div>
+              <nav class="footer__nav">
+                <ul class="footer__nav-list footer__nav-list--social">
+                  <li class="footer__nav-item">
+                    <picture>
+                      <source srcset="./img/icons/socials/facebook.svg" type="image/webp">
+                      <img src="./img/icons/socials/facebook.svg" alt="" />
+                    </picture>
+                    <a href="#" class="footer__nav-link">Facebook</a>
+                  </li>
+                  <li class="footer__nav-item">
+                    <picture>
+                      <source srcset="./img/icons/socials/instagram.svg" type="image/webp">
+                      <img src="./img/icons/socials/instagram.svg" alt="" />
+                    </picture>
+                    <a href="#" class="footer__nav-link">Instagram</a>
+                  </li>
+                  <li class="footer__nav-item">
+                    <picture>
+                      <source srcset="./img/icons/socials/Pinterest.svg" type="image/webp">
+                      <img src="./img/icons/socials/Pinterest.svg" alt="" />
+                    </picture>
+                    <a href="#" class="footer__nav-link">Pinterest</a>
+                  </li>
+                  <li class="footer__nav-item">
+                    <picture>
+                      <source srcset="./img/icons/socials/whatsapp.svg" type="image/webp">
+                      <img src="./img/icons/socials/whatsapp.svg" alt="" />
+                    </picture>
+                    <a href="#" class="footer__nav-link">WhatsApp</a>
+                  </li>
+                  <li class="footer__nav-item">
+                    <picture>
+                      <source srcset="./img/icons/socials/youtube.svg" type="image/webp">
+                      <img src="./img/icons/socials/youtube.svg" alt="" />
+                    </picture>
+                    <a href="#" class="footer__nav-link">Youtube</a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+        </footer>
+        </div>
+      </body>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+      <script src="./js/index.bundle.js"></script>
+  </body>
+</html>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="./js/index.bundle.js"></script>
+</body>
+</html>

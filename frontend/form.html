@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Furniture</title>
+    <link rel="stylesheet" href="./css/main.css" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="mask"></div>
+      <header class="header">
+        <div class="container">
+          <div class="header__inner">
+            <nav class="header__nav">
+              <ul class="header__nav-list">
+                <li class="header__nav-link header__nav-link--active">
+                  <a href="about.html">Форма</a>
+                </li>
+                <li class="header__nav-link">
+                  <a href="contacts.html">Контакти</a>
+                </li>
+              </ul>
+              <a href="index.html" class="header__logo">
+                <picture>
+                  <source srcset="./img/icons/logos/logo.webp" type="image/webp">
+                  <img class="header__logo-img logo" src="./img/icons/logos/logo.jpg" alt="Logo" />
+                </picture>
+              </a>
+              <ul class="header__btns">
+                <button class="btn-login">Увійти</button>
+                <button class="btn-signup">Зареєструватись</button>
+              </ul>
+            </nav>
+            <button class="header__btn">
+              <picture>
+                <source srcset="./img/rightside/rightside-icon.svg" type="image/webp">
+                <img src="./img/rightside/rightside-icon.svg" alt="" />
+              </picture>
+            </button>
+          </div>
+        </div>
+      </header>
+      <div class="mask"></div>
+      <div class="modal-overlay modal-login">
+        <div class="modal">
+          <button class="modal-close modal-close--login">X</button>
+          <h2>Увійти</h2>
+          <form>
+            <div class="form-group">
+              <label for="email">Електронна пошта</label>
+              <input type="email" id="email" placeholder="Введіть email" required />
+            </div>
+            <div class="form-group">
+              <label for="password">Пароль</label>
+              <input type="password" id="password" placeholder="Введіть пароль" required />
+            </div>
+            <button type="submit" class="btn-submit">Увійти</button>
+          </form>
+          <button class="btn-forgot-password" style="margin-top: 10px; background: none; border: none; color: #007BFF; cursor: pointer;"> Забули пароль?</button>
+          <button class="btn-google__wrapper">
+            <div class="btn-google">Увійти через Google</div>
+            <picture>
+              <source srcset="./img/icons/google.webp" type="image/webp">
+              <img src="./img/icons/google.png" alt="" />
+            </picture>
+          </button>
+        </div>
+      </div>
+      <div class="modal-overlay modal-signup">
+        <div class="modal">
+          <button class="modal-close modal-close--signup">X</button>
+          <h2>Реєстрація</h2>
+          <form>
+            <div class="form-group">
+              <label for="register-email">Електронна пошта</label>
+              <input type="email" id="register-email" placeholder="Введіть email" required />
+            </div>
+            <div class="form-group">
+              <label for="register-password">Пароль</label>
+              <input type="password" id="register-password" placeholder="Введіть пароль" required />
+            </div>
+            <button type="submit" class="btn-submit">Зареєструватися</button>
+          </form>
+          <button class="btn-google__wrapper">
+            <div class="btn-google">Увійти через Google</div>
+            <picture>
+              <source srcset="./img/icons/google.webp" type="image/webp">
+              <img src="./img/icons/google.png" alt="" />
+            </picture>
+          </button>
+        </div>
+      </div>
+      <div class="header-rightside">
+        <div class="rightside__inner">
+          <div class="rightside__logo">
+            <picture>
+              <source srcset="./img/icons/logos/logo.webp" type="image/webp">
+              <img class="logo" src="./img/icons/logos/logo.jpg" alt="Logo" />
+            </picture>
+          </div>
+          <h1 class="rightside__title title"> Як працює система?</h1>
+          <p class="rightside__text"> Студент заповнює коротку форму з даними про себе та пару. Після відправки інформація потрапляє до журналу викладача.</p>
+          <picture>
+            <source srcset="./img/rightside/rightside-main-img.svg" type="image/webp">
+            <img class="rightside__img" src="./img/rightside/rightside-main-img.svg" alt="" />
+          </picture>
+        </div>
+        <button class="rightside-close">
+          <picture>
+            <source srcset="./img/icons/close.svg" type="image/webp">
+            <img src="./img/icons/close.svg" alt="" />
+          </picture>
+        </button>
+      </div>
+      <button class="mobile-nav-btn">
+        <div class="nav-icon"></div>
+      </button>
+      <div class="mobile-nav">
+        <ul class="mobile-nav__list">
+          <li>
+            <a href="./form.html">Форма</a>
+          </li>
+          <li>
+            <a href="./contacts.html">Контакти</a>
+          </li>
+        </ul>
+      </div>
+      <div class="header-rightside">
+        <div class="rightside__inner">
+          <div class="rightside__logo">
+            <picture>
+              <source srcset="./img/icons/logos/logo.webp" type="image/webp">
+              <img class="logo" src="./img/icons/logos/logo.jpg" alt="Logo" />
+            </picture>
+          </div>
+          <h1 class="rightside__title title"> Як працює система?</h1>
+          <p class="rightside__text"> Студент заповнює коротку форму з даними про себе та пару. Після відправки інформація потрапляє до журналу викладача.</p>
+          <picture>
+            <source srcset="./img/rightside/rightside-main-img.svg" type="image/webp">
+            <img class="rightside__img" src="./img/rightside/rightside-main-img.svg" alt="" />
+          </picture>
+        </div>
+        <button class="rightside-close">
+          <picture>
+            <source srcset="./img/icons/close.svg" type="image/webp">
+            <img src="./img/icons/close.svg" alt="" />
+          </picture>
+        </button>
+      </div>
+      <main class="main">
+        <section class="about-us">
+          <h2 class="about-us__title title">Форма Бронювання</h2>
+        </section>
+        <section class="confirmation-form">
+          <div class="form-container">
+            <h2 class="form-title">Забронюйте вибрану Вами аудиторію</h2>
+            <form>
+              <div class="form-group">
+                <label for="group">Група</label>
+                <input type="text" id="group" name="group" placeholder="Наприклад: ОІ-21" required>
+              </div>
+              <div class="form-group">
+                <label for="name">Ініціали</label>
+                <input type="text" id="name" name="name" placeholder="Наприклад: Жила Д.А." required>
+              </div>
+              <div class="form-group">
+                <label for="subject">Предмет</label>
+                <input type="text" id="subject" name="subject" placeholder="Наприклад: Алгоритми" required>
+              </div>
+              <div class="form-group">
+                <label for="day">День тижня</label>
+                <select id="day" name="day" required>
+                  <option value="">Оберіть день</option>
+                  <option value="Понеділок">Понеділок</option>
+                  <option value="Вівторок">Вівторок</option>
+                  <option value="Середа">Середа</option>
+                  <option value="Четвер">Четвер</option>
+                  <option value="П’ятниця">П’ятниця</option>
+                </select>
+              </div>
+              <button type="submit" class="submit-btn">Підтвердити бронювання</button>
+            </form>
+          </div>
+        </section>
+      </main>
+      <footer class="footer">
+        <div class="container">
+          <div class="footer__inner">
+            <div class="footer__textbox">
+              <h4 class="footer__title">Система підтвердження присутності студентів</h4>
+              <p class="footer__text"> Виникли питання? Напиши нам на пошту, і ми радо відповімо!</p>
+              <div class="footer__mail">
+                <a href="mailto:ouremailaddress@email.com">ouremailaddress@email.com</a>
+              </div>
+              <form class="footer__form">
+                <div class="footer__input">
+                  <input placeholder="Введіть свій email..." />
+                </div>
+                <button class="footer__btn">Надіслати</button>
+              </form>
+            </div>
+            <nav class="footer__nav">
+              <ul class="footer__nav-list footer__nav-list--social">
+                <li class="footer__nav-item">
+                  <picture>
+                    <source srcset="./img/icons/socials/facebook.svg" type="image/webp">
+                    <img src="./img/icons/socials/facebook.svg" alt="" />
+                  </picture>
+                  <a href="#" class="footer__nav-link">Facebook</a>
+                </li>
+                <li class="footer__nav-item">
+                  <picture>
+                    <source srcset="./img/icons/socials/instagram.svg" type="image/webp">
+                    <img src="./img/icons/socials/instagram.svg" alt="" />
+                  </picture>
+                  <a href="#" class="footer__nav-link">Instagram</a>
+                </li>
+                <li class="footer__nav-item">
+                  <picture>
+                    <source srcset="./img/icons/socials/Pinterest.svg" type="image/webp">
+                    <img src="./img/icons/socials/Pinterest.svg" alt="" />
+                  </picture>
+                  <a href="#" class="footer__nav-link">Pinterest</a>
+                </li>
+                <li class="footer__nav-item">
+                  <picture>
+                    <source srcset="./img/icons/socials/whatsapp.svg" type="image/webp">
+                    <img src="./img/icons/socials/whatsapp.svg" alt="" />
+                  </picture>
+                  <a href="#" class="footer__nav-link">WhatsApp</a>
+                </li>
+                <li class="footer__nav-item">
+                  <picture>
+                    <source srcset="./img/icons/socials/youtube.svg" type="image/webp">
+                    <img src="./img/icons/socials/youtube.svg" alt="" />
+                  </picture>
+                  <a href="#" class="footer__nav-link">Youtube</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+      </footer>
+    </div>
+    </div>
+  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="./js/index.bundle.js"></script>
+  </body>
+</html>
