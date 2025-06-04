@@ -156,7 +156,7 @@
         <section class="confirmation-form">
           <div class="form-container">
             <h2 class="form-title">Забронюйте вибрану Вами аудиторію</h2>
-            <form>
+            <form id="bookingForm">
               <div class="form-group">
                 <label for="group">Група</label>
                 <input type="text" id="group" name="group" placeholder="Наприклад: ОІ-21" required>
@@ -247,5 +247,26 @@
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="./js/index.bundle.js"></script>
+  <script>
+document.getElementById('bookingForm').addEventListener('submit', function (e) {
+  e.preventDefault(); // зупиняє перехід на /book
+
+  const formData = new FormData(this);
+
+  fetch('/book', {
+    method: 'POST',
+    body: formData
+  })
+  .then(res => res.text())
+  .then(data => {
+    document.getElementById('result').innerText = "Бронювання успішне!";
+    console.log(data);
+  })
+  .catch(err => {
+    document.getElementById('result').innerText = "Помилка при бронюванні";
+    console.error(err);
+  });
+});
+</script>
   </body>
 </html>
