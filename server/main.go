@@ -55,7 +55,10 @@ func getKey(w http.ResponseWriter, r *http.Request) {
 func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/key", getKey)
-
+	mux.HandleFunc("/book", formHandler)
+	// 🔽 Додаємо хостинг фронтенду
+	fs := http.FileServer(http.Dir("../frontend"))
+	mux.Handle("/", fs)
 	ctx := context.Background()
 	server := &http.Server{
 		Addr:    ":3333",

@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 )
 
@@ -26,17 +25,17 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 	// w.Write([]byte("Бронювання прийнято!"))
 }
 
-func main() {
-	// Обробка POST-запиту з форми
-	http.HandleFunc("/book", formHandler)
+// func main() {
+// 	// Обробка POST-запиту з форми
+// 	http.HandleFunc("/book", formHandler)
 
-	// Статичні файли: html, css, js
-	fs := http.FileServer(http.Dir("../frontend"))
-	http.Handle("/", fs)
+// 	// Статичні файли: html, css, js
+// 	fs := http.FileServer(http.Dir("../frontend"))
+// 	http.Handle("/", fs)
 
-	fmt.Println("Сервер працює на http://localhost:8080")
-	log.Fatal(http.ListenAndServe(":8080", nil))
-}
+// 	fmt.Println("Сервер працює на http://localhost:8080")
+// 	log.Fatal(http.ListenAndServe(":8080", nil))
+// }
 //cd server && go run test.go
 //Захоститься сайт і в консольці виведе дані з форми
-// Перевірка: http://localhost:8080 
+// Перевірка: http://localhost:8080
