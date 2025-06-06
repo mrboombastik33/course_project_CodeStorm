@@ -2,8 +2,30 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
+	"strconv"
 )
+
+// func formHandler(w http.ResponseWriter, r *http.Request) {
+// 	if r.Method != http.MethodPost {
+// 		http.Error(w, "Method not allowed", http.StatusMethodNotAllowed)
+// 		return
+// 	}
+
+// 	group := r.FormValue("group")
+// 	name := r.FormValue("name")
+// 	subject := r.FormValue("subject")
+// 	day := r.FormValue("day")
+
+// 	fmt.Println("🔹 Отримано бронювання:")
+// 	fmt.Println("Група:", group)
+// 	fmt.Println("Ім'я:", name)
+// 	fmt.Println("Предмет:", subject)
+// 	fmt.Println("День:", day)
+
+// 	// w.Write([]byte("Бронювання прийнято!"))
+// }
 
 func formHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method != http.MethodPost {
@@ -11,18 +33,35 @@ func formHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	group := r.FormValue("group")
 	name := r.FormValue("name")
-	subject := r.FormValue("subject")
-	day := r.FormValue("day")
+	espIDstr := r.FormValue("ESP_ID")
+	ESP_ID, err := strconv.Atoi(espIDstr)
+	if err != nil {
+		http.Error(w, "Invalid ESP_ID", http.StatusBadRequest)
+		return
+	}
 
-	fmt.Println("🔹 Отримано бронювання:")
-	fmt.Println("Група:", group)
-	fmt.Println("Ім'я:", name)
-	fmt.Println("Предмет:", subject)
-	fmt.Println("День:", day)
+	fmt.Printf("🔹 Отримано бронювання: name=%s, ESP_ID=%d\n", name, ESP_ID)
 
-	// w.Write([]byte("Бронювання прийнято!"))
+	// Підключення до БД
+	db, SQLerr := startMySQL(credentialsSQL.user, credentialsSQL.password, credentialsSQL.DBName)
+	if SQLerr != nil {
+		log.Printf("MySQL error: %v", SQLerr)
+		http.Error(w, "DB error", http.StatusInternalServerError)
+		return
+	}
+	defer db.Close()
+
+	// Виклик функції book
+	keyUID, err := book(db, name, ESP_ID)
+	if err != nil {
+		log.Printf("Book error: %v", err)
+		http.Error(w, "DB error", http.StatusInternalServerError)
+		return
+	}
+
+	// Надсилаємо UID у відповідь
+	w.Write([]byte(fmt.Sprintf("UID заброньовано: %s", keyUID)))
 }
 
 // func main() {
