@@ -1,7 +1,40 @@
-.idea
+
+# === General ===
+.env
+*.log
+.DS_Store
+*.swp
+
+# === IDEs and Editors ===
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# === Python ===
 *.pyc
 *.pyo
-db.sqlite3
-.venv/
 __pycache__/
-.env
+.venv/
+db.sqlite3
+
+# === Go ===
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Go workspace file
+go.work
+go.work.sum
+
+# === Build output ===
+dist/
+build/
+public/
+coverage/
+*.tsbuildinfo
