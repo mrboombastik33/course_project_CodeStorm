@@ -54,8 +54,24 @@ func getKey(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	mux := http.NewServeMux()
+
+	// Add CORS middleware
+	mux.HandleFunc("/api/book", func(w http.ResponseWriter, r *http.Request) {
+		// Set CORS headers
+		w.Header().Set("Access-Control-Allow-Origin", "*")
+		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
+		// Handle preflight requests
+		if r.Method == "OPTIONS" {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+
+		bookingHandler(w, r)
+	})
+
 	mux.HandleFunc("/key", getKey)
-	mux.HandleFunc("/book", formHandler)
 	// 🔽 Додаємо хостинг фронтенду
 	fs := http.FileServer(http.Dir("../frontend"))
 	mux.Handle("/", fs)
