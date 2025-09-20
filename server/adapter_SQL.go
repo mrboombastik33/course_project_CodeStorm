@@ -36,21 +36,14 @@ func getKeyUID(db *sql.DB, ESP_ID int) (keyUID string, err error) {
 	return keyFromDB, nil
 }
 
-
-// func book(db *sql.DB, name string, ESP_ID int) (keyUID string, err error) {
-// 	row := db.QueryRow("SELECT uid FROM access_inf WHERE name = ?", name)
-// 	var keyFromDB string
-// 	err = row.Scan(&keyFromDB)
-
-// 	if err != nil {
-// 		return "", err
-// 	}
-
-// 	row = db.QueryRow("UPDATE uid FROM key_inf WHERE ESP_ID = ?", ESP_ID)
-
-// 	return keyFromDB, nil
-// }
-
+func getAudienceByESPID(db *sql.DB, ESP_ID int) (audience string, err error) {
+	row := db.QueryRow("SELECT audience FROM key_inf WHERE esp_id = ?", ESP_ID)
+	err = row.Scan(&audience)
+	if err != nil {
+		return "", err
+	}
+	return audience, nil
+}
 
 func book(db *sql.DB, name string, ESP_ID int) (keyUID string, err error) {
 	// Отримуємо ключ за ім'ям
@@ -62,7 +55,7 @@ func book(db *sql.DB, name string, ESP_ID int) (keyUID string, err error) {
 	}
 
 	// Оновлюємо key_inf, встановлюючи uid = keyFromDB для ESP_ID
-	_, err = db.Exec("UPDATE key_inf SET uid = ? WHERE ESP_ID = ?", keyFromDB, ESP_ID)
+	_, err = db.Exec("UPDATE key_inf SET uid = ? WHERE esp_id = ?", keyFromDB, ESP_ID)
 	if err != nil {
 		return "", err
 	}

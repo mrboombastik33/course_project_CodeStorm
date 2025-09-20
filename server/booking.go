@@ -5,31 +5,42 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+	"strconv"
 )
 
 type Booking struct {
-	GroupName   string `json:"group"`
-	StudentName string `json:"name"`
-	Audience    string `json:"subject"`
-	BookingTime string `json:"time"`
-	DayOfWeek   string `json:"day"`
+	GroupName   string `json:"group"`   // Group name
+	StudentName string `json:"name"`    // User UID (maps to user_id in DB)
+	Audience    string `json:"subject"` // ESP ID (will be converted to audience name)
+	BookingTime string `json:"time"`    // Booking time
+	DayOfWeek   string `json:"day"`     // Day of week
 }
 
 func createBooking(db *sql.DB, booking Booking) error {
+	// Convert ESP ID from string to integer
+	espID, err := strconv.Atoi(booking.Audience)
+	if err != nil {
+		return fmt.Errorf("invalid ESP ID: %s", booking.Audience)
+	}
+
 	query := `
-		INSERT INTO bookings (group_name, student_name, audience, booking_time, day_of_week)
-		VALUES (?, ?, ?, ?, ?)
+		INSERT INTO bookings (group_name, user_name, esp_id, booking_time, day_of_week)
+		VALUES (?, ?, ?, STR_TO_DATE(?, '%H:%i'), ?)
 	`
 
-	_, err := db.Exec(query,
+	_, err = db.Exec(query,
 		booking.GroupName,
-		booking.StudentName,
-		booking.Audience,
+		booking.StudentName, // user_id
+		espID,               // numeric esp_id
 		booking.BookingTime,
 		booking.DayOfWeek,
 	)
 
-	return err
+	if err != nil {
+		return fmt.Errorf("failed to insert booking: %v", err)
+	}
+
+	return nil
 }
 
 func bookingHandler(w http.ResponseWriter, r *http.Request) {
@@ -50,10 +61,8 @@ func bookingHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Log received booking data
 	fmt.Printf("Received booking data: %+v\n", booking)
 
-	// Validate required fields
 	if booking.GroupName == "" || booking.StudentName == "" ||
 		booking.Audience == "" || booking.BookingTime == "" ||
 		booking.DayOfWeek == "" {
@@ -62,7 +71,7 @@ func bookingHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Connect to database
+	// З'єднання з базою даних
 	db, err := startMySQL(credentialsSQL.user, credentialsSQL.password, credentialsSQL.DBName)
 	if err != nil {
 		fmt.Printf("Database connection error: %v\n", err)
@@ -71,14 +80,14 @@ func bookingHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	defer db.Close()
 
-	// Create booking
+	// Створити бронювання
 	if err := createBooking(db, booking); err != nil {
 		fmt.Printf("Error creating booking: %v\n", err)
 		http.Error(w, "Failed to create booking", http.StatusInternalServerError)
 		return
 	}
 
-	// Return success response
+	// Повернути статус
 	w.Header().Set("Content-Type", "application/json")
 	response := map[string]string{
 		"status":  "success",

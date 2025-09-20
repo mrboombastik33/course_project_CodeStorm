@@ -84,7 +84,7 @@ func main() {
 			return ctx
 		},
 	}
-	// err := server.ListenAndServeTLS("/home/pavlo/Стільниця/cert/cert.pem", "/home/pavlo/Стільниця/cert/key.pem")
+
 	err := server.ListenAndServe()
 	if errors.Is(err, http.ErrServerClosed) {
 		fmt.Printf("server closed\n")
