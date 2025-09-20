@@ -170,8 +170,8 @@
                 <input type="text" id="subject" name="subject" placeholder="Наприклад: 807, V корпус" required>
               </div>
               <div class="form-group">
-                <label for="subject">Час</label>
-                <input type="text" id="subject" name="subject" placeholder="Наприклад: 13:00" required>
+                <label for="time">Час</label>
+                <input type="text" id="time" name="time" placeholder="Наприклад: 13:00" required>
               </div>
               <div class="form-group">
                 <label for="day">День тижня</label>
@@ -181,7 +181,7 @@
                   <option value="Вівторок">Вівторок</option>
                   <option value="Середа">Середа</option>
                   <option value="Четвер">Четвер</option>
-                  <option value="П’ятниця">П’ятниця</option>
+                  <option value="П'ятниця">П'ятниця</option>
                 </select>
               </div>
               <button type="submit" class="submit-btn">Підтвердити бронювання</button>
@@ -252,25 +252,50 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="./js/index.bundle.js"></script>
   <script>
-document.getElementById('bookingForm').addEventListener('submit', function (e) {
-  e.preventDefault(); // зупиняє перехід на /book
+    document.getElementById('bookingForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const formData = {
+        group: document.getElementById('group').value,
+        name: document.getElementById('name').value,
+        subject: document.getElementById('subject').value,
+        time: document.getElementById('time').value,
+        day: document.getElementById('day').value
+      };
 
-  const formData = new FormData(this);
+      try {
+        console.log('Sending data:', formData);
+        const response = await fetch('http://localhost:3333/api/book', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(formData)
+        });
 
-  fetch('/book', {
-    method: 'POST',
-    body: formData
-  })
-  .then(res => res.text())
-  .then(data => {
-    document.getElementById('result').innerText = "Бронювання успішне!";
-    console.log(data);
-  })
-  .catch(err => {
-    document.getElementById('result').innerText = "Помилка при бронюванні";
-    console.error(err);
-  });
-});
-</script>
-  </body>
+        console.log('Response status:', response.status);
+        const responseText = await response.text();
+        console.log('Response text:', responseText);
+
+        let result;
+        try {
+          result = JSON.parse(responseText);
+        } catch (e) {
+          console.error('Error parsing JSON:', e);
+          alert('Помилка при обробці відповіді сервера');
+          return;
+        }
+        
+        if (response.ok) {
+          alert('Бронювання успішно створено!');
+          this.reset();
+        } else {
+          alert('Помилка: ' + (result.message || 'Невідома помилка'));
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Помилка при відправці форми: ' + error.message);
+      }
+    });
+  </script>
 </html>
