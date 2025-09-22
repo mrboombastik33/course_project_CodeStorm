@@ -2,29 +2,29 @@ DROP DATABASE IF EXISTS `rfid_project`;
 CREATE DATABASE `rfid_project`;
 USE `rfid_project`;
 
-CREATE TABLE `access_inf` (
-    `person_id` INT AUTO_INCREMENT PRIMARY KEY,
-    `name` CHAR(40) UNIQUE NOT NULL,
-    `user_id` CHAR(11) UNIQUE
+CREATE TABLE access_inf (
+    person_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(40) UNIQUE NOT NULL,   -- human-readable name
+    user_id VARCHAR(11) UNIQUE NOT NULL -- RFID ID
 );
 
-CREATE TABLE `key_inf` (
-    `esp_id` INT PRIMARY KEY NOT NULL,
-    `audience` CHAR(30) NOT NULL,
-    `uid` CHAR(11),
+CREATE TABLE key_inf (
+    esp_id INT PRIMARY KEY NOT NULL,
+    audience VARCHAR(30) NOT NULL,
+    uid VARCHAR(11),
     FOREIGN KEY (uid) REFERENCES access_inf(user_id)
         ON DELETE SET NULL
         ON UPDATE CASCADE
 );
 
-CREATE TABLE `bookings` (
-    `id` INT AUTO_INCREMENT PRIMARY KEY,
-    `group_name` CHAR(10) NOT NULL,
-    `user_name` CHAR(11) NOT NULL,
-    `esp_id` INT NOT NULL,
-    `booking_time` TIME NOT NULL,
-    `day_of_week` CHAR(10) NOT NULL,
-    `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+CREATE TABLE bookings (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    group_name VARCHAR(10) NOT NULL,
+    user_name VARCHAR(40) NOT NULL,  -- store the name here
+    esp_id INT NOT NULL,
+    booking_time TIME NOT NULL,
+    day_of_week CHAR(10) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_name) REFERENCES access_inf(name)
         ON DELETE CASCADE
         ON UPDATE CASCADE,
@@ -32,6 +32,7 @@ CREATE TABLE `bookings` (
         ON DELETE CASCADE
         ON UPDATE CASCADE
 );
+
 
 
 -- Дані для тестів
