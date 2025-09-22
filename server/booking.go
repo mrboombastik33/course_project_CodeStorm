@@ -9,11 +9,11 @@ import (
 )
 
 type Booking struct {
-	GroupName   string `json:"group"`   // Group name
-	StudentName string `json:"name"`    // User UID (maps to user_id in DB)
-	Audience    string `json:"subject"` // ESP ID (will be converted to audience name)
-	BookingTime string `json:"time"`    // Booking time
-	DayOfWeek   string `json:"day"`     // Day of week
+	GroupName   string `json:"group"`   
+	StudentName string `json:"name"`    
+	Audience    string `json:"subject"` 
+	BookingTime string `json:"time"`    
+	DayOfWeek   string `json:"day"`     
 }
 
 func createBooking(db *sql.DB, booking Booking) error {
