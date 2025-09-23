@@ -60,14 +60,14 @@ CREATE TABLE IF NOT EXISTS event_log (
 
 INSERT INTO access_inf (name, user_id)
 VALUES 
-('Pavlo', '276FE546'),
+('user', '276FE546'),
 ('admin', 'FF');
 
 INSERT INTO key_inf (esp_id, audience, uid)
 VALUES
 (312, '101A', 'FF'),
 (313, '102B', 'FF'),
-(314, '103C', '276FE546'),
+(314, '103C', 'FF'),
 (315, '807', 'FF');
 
 
@@ -80,9 +80,6 @@ SET GLOBAL event_scheduler = ON;
 
 -- Drop the event if it exists from a previous setup
 DROP EVENT IF EXISTS manage_bookings_event;
-
--- Change the command delimiter for the event creation block
-DELIMITER $$
 
 CREATE EVENT manage_bookings_event
 ON SCHEDULE EVERY 1 MINUTE
@@ -128,7 +125,4 @@ BEGIN
   WHERE day_of_week = DAYNAME(NOW())
     AND TIME(NOW()) > ADDTIME(booking_time, '00:02:00');
 
-END$$
-
--- Change the delimiter back to the standard semicolon
-DELIMITER ;
+END;
