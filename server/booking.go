@@ -5,38 +5,36 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"strconv"
 )
 
 type Booking struct {
-	GroupName   string `json:"group"`   
-	StudentName string `json:"name"`    
-	Audience    string `json:"subject"` 
-	BookingTime string `json:"time"`    
-	DayOfWeek   string `json:"day"`     
+	GroupName   string `json:"group"`
+	StudentName string `json:"name"`
+	Audience    string `json:"subject"`
+	BookingTime string `json:"time"`
+	DayOfWeek   string `json:"day"`
 }
 
+// CORRECTED FUNCTION
 func createBooking(db *sql.DB, booking Booking) error {
-	// Convert ESP ID from string to integer
-	espID, err := strconv.Atoi(booking.Audience)
-	if err != nil {
-		return fmt.Errorf("invalid ESP ID: %s", booking.Audience)
-	}
 
 	query := `
-		INSERT INTO bookings (group_name, user_name, esp_id, booking_time, day_of_week)
+		INSERT INTO bookings (group_name, user_name, audience, booking_time, day_of_week)
 		VALUES (?, ?, ?, STR_TO_DATE(?, '%H:%i'), ?)
 	`
 
-	_, err = db.Exec(query,
+	// The strconv.Atoi conversion is no longer needed.
+	// We pass booking.Audience (the original string) as the argument.
+	_, err := db.Exec(query,
 		booking.GroupName,
-		booking.StudentName, // user_id
-		espID,               // numeric esp_id
+		booking.StudentName,
+		booking.Audience,
 		booking.BookingTime,
 		booking.DayOfWeek,
 	)
 
 	if err != nil {
+		// This will now provide a more accurate error if something goes wrong
 		return fmt.Errorf("failed to insert booking: %v", err)
 	}
 
