@@ -1,0 +1,7 @@
+USE rfid_project;
+
+CREATE TABLE IF NOT EXISTS event_log (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    message VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

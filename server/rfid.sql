@@ -1,13 +1,20 @@
+-- Drop the database if it exists to start with a clean slate
 DROP DATABASE IF EXISTS `rfid_project`;
+
+-- Create the database
 CREATE DATABASE `rfid_project`;
+
+-- Select the database to use
 USE `rfid_project`;
 
+-- Create the table for access information
 CREATE TABLE access_inf (
     person_id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(40) UNIQUE NOT NULL,   -- human-readable name
-    user_id VARCHAR(11) UNIQUE NOT NULL -- RFID ID
+    name VARCHAR(40) UNIQUE NOT NULL,   
+    user_id VARCHAR(11) UNIQUE NOT NULL 
 );
 
+-- Create the table for key (ESP) information
 CREATE TABLE key_inf (
     esp_id INT PRIMARY KEY NOT NULL,
     audience VARCHAR(30) NOT NULL,
@@ -17,10 +24,11 @@ CREATE TABLE key_inf (
         ON UPDATE CASCADE
 );
 
+-- Create the table for bookings
 CREATE TABLE bookings (
     id INT AUTO_INCREMENT PRIMARY KEY,
     group_name VARCHAR(10) NOT NULL,
-    user_name VARCHAR(40) NOT NULL,  -- store the name here
+    user_name VARCHAR(40) NOT NULL,  
     esp_id INT NOT NULL,
     booking_time TIME NOT NULL,
     day_of_week CHAR(10) NOT NULL,
@@ -33,9 +41,14 @@ CREATE TABLE bookings (
         ON UPDATE CASCADE
 );
 
+-- Create the table for logging event actions
+CREATE TABLE IF NOT EXISTS event_log (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    message VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
-
--- Дані для тестів
+-- Insert sample data for testing purposes
 INSERT INTO access_inf (name, user_id)
 VALUES 
 ('Pavlo', '276FE546'),
@@ -48,7 +61,40 @@ VALUES
 (314, '103C', '276FE546'),
 (315, '807', 'FF');
 
--- INSERT INTO access_inf(person_id, person_name,uid)
--- VALUES (1, 'Pavlo', '276FE546'), (3, 'admin', 'FF');
--- INSERT INTO key_inf (esp_id, audience, uid)
--- VALUES(312, 'FF'), (313, 'FF'), (314, '276FE546');
+-- Ensure the MySQL event scheduler is turned on
+SET GLOBAL event_scheduler = ON;
+
+    
+-- First, drop the old event
+DROP EVENT IF EXISTS manage_bookings_event;
+
+-- Create the corrected event
+CREATE EVENT manage_bookings_event
+ON SCHEDULE EVERY 1 MINUTE
+DO
+BEGIN
+  -- SET THE LANGUAGE for this session to Ukrainian
+  SET lc_time_names = 'uk_UA';
+
+  -- Part 1: Update key information (this will now work correctly)
+  UPDATE key_inf k
+  JOIN bookings b ON k.esp_id = b.esp_id
+  JOIN access_inf a ON b.user_name = a.name
+  SET k.uid = a.user_id
+  WHERE b.booking_time = TIME(NOW())
+    AND b.day_of_week = DAYNAME(NOW());
+
+  -- Part 2: Log the bookings about to be deleted
+  INSERT INTO event_log (message)
+  SELECT CONCAT('Deleting expired booking for user: ', user_name, ', ESP ID: ', esp_id, ', scheduled at: ', booking_time)
+  FROM bookings
+  WHERE day_of_week = DAYNAME(NOW())
+    AND TIME(NOW()) > ADDTIME(booking_time, '00:02:00');
+
+  -- Part 3: Delete old bookings (this will now work correctly)
+  DELETE FROM bookings
+  WHERE day_of_week = DAYNAME(NOW())
+    AND TIME(NOW()) > ADDTIME(booking_time, '00:02:00');
+END;
+
+  
